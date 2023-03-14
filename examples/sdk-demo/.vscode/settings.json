@@ -1,0 +1,12 @@
+{
+  "eslint.run": "onType",
+  "eslint.options": {
+    "extensions": [".js", ".jsx", ".tsx"]
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

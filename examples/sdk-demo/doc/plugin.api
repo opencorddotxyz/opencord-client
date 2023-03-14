@@ -1,0 +1,31 @@
+syntax = "v1"
+
+import "types.api"
+
+service plugin {
+	@doc "Load Balancer Health Check"
+	@handler index
+	get /
+}
+
+@server (
+	middleware: HeaderMiddleware,CorsMiddleware,BodyLoggerMiddleware
+)
+
+service plugin {
+	@doc "Auth plugin's code"
+	@handler authCode
+	get /v1/users/auth (AuthCodeRequest) returns (AuthCodeResponse)
+	
+	@doc "Validate user's server-level permissions"
+	@handler validateServerPermissions
+	get /v1/servers/:serverId/permissions/validate (ValidateServerPermissionsRequest) returns (ValidateServerPermissionsResponse)
+	
+	@doc "Validate user's channel-level permissions"
+	@handler validateChannelPermissions
+	get /v1/channels/:channelId/permissions/validate (ValidateChannelPermissionsRequest) returns (ValidateChannelPermissionsResponse)
+	
+	@doc "Send notification"
+	@handler Notify
+	post /v1/notify (NotifyRequest)
+}

@@ -1,0 +1,46 @@
+syntax = "v1"
+
+type AuthCodeRequest {
+	Code string `form:"code"`
+}
+
+type AuthCodeResponse {
+	UserId    string `json:"userId"`
+	Address   string `json:"address"`
+	ChannelId string `json:"channelId"`
+	ServerId  string `json:"serverId"`
+}
+
+type ValidateServerPermissionsRequest {
+	ServerId    string `validate:"required" path:"serverId"`
+	UserId      string `validate:"required" form:"userId"`
+	Group       string `validate:"required" form:"group"`
+	Permissions string `validate:"required" form:"permissions"`
+}
+
+type ValidateServerPermissionsResponse {
+	Allowed string `json:"allowed"`
+}
+
+type ValidateChannelPermissionsRequest {
+	ChannelId   string `validate:"required" path:"channelId"`
+	UserId      string `validate:"required" form:"userId"`
+	Group       string `validate:"required" form:"group"`
+	Permissions string `validate:"required" form:"permissions"`
+}
+
+type ValidateChannelPermissionsResponse {
+	Allowed string `json:"allowed"`
+}
+
+type NotificationContent {
+	Sender string `json:"sender"`
+}
+
+type NotifyRequest {
+	ChannelId   string   `json:"channelId"`
+	Title       string   `json:"title"`
+	Content     string   `json:"content"`
+	JumpPath    string   `json:"jumpPath"`
+	ReceiverIds []string `json:"receiverIds,optional"` // when this parameter is not passed, everyone in the channel will be notified by default; otherwise, it will be notified by the specified user
+}

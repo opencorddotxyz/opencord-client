@@ -1,0 +1,281 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "host": "api-dev.opencord.so",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Load Balancer Health Check",
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "tags": ["plugin"]
+      }
+    },
+    "/v1/channels/{channelId}/permissions/validate": {
+      "get": {
+        "summary": "Validate user's channel-level permissions",
+        "operationId": "validateChannelPermissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ValidateChannelPermissionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["plugin"]
+      }
+    },
+    "/v1/notify": {
+      "post": {
+        "summary": "Send notification",
+        "operationId": "Notify",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NotifyRequest"
+            }
+          }
+        ],
+        "tags": ["plugin"]
+      }
+    },
+    "/v1/servers/{serverId}/permissions/validate": {
+      "get": {
+        "summary": "Validate user's server-level permissions",
+        "operationId": "validateServerPermissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ValidateServerPermissionsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "group",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permissions",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["plugin"]
+      }
+    },
+    "/v1/users/auth": {
+      "get": {
+        "summary": "Auth plugin's code",
+        "operationId": "authCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AuthCodeResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["plugin"]
+      }
+    }
+  },
+  "definitions": {
+    "AuthCodeRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      },
+      "title": "AuthCodeRequest",
+      "required": ["code"]
+    },
+    "AuthCodeResponse": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "channelId": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "string"
+        }
+      },
+      "title": "AuthCodeResponse",
+      "required": ["userId", "address", "channelId", "serverId"]
+    },
+    "NotificationContent": {
+      "type": "object",
+      "properties": {
+        "sender": {
+          "type": "string"
+        }
+      },
+      "title": "NotificationContent",
+      "required": ["sender"]
+    },
+    "NotifyRequest": {
+      "type": "object",
+      "properties": {
+        "channelId": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "jumpPath": {
+          "type": "string"
+        },
+        "receiverIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": " when this parameter is not passed, everyone in the channel will be notified by default; otherwise, it will be notified by the specified user"
+        }
+      },
+      "title": "NotifyRequest",
+      "required": ["channelId", "title", "content", "jumpPath"]
+    },
+    "ValidateChannelPermissionsRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "string"
+        }
+      },
+      "title": "ValidateChannelPermissionsRequest",
+      "required": ["userId", "group", "permissions"]
+    },
+    "ValidateChannelPermissionsResponse": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "string"
+        }
+      },
+      "title": "ValidateChannelPermissionsResponse",
+      "required": ["allowed"]
+    },
+    "ValidateServerPermissionsRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "string"
+        }
+      },
+      "title": "ValidateServerPermissionsRequest",
+      "required": ["userId", "group", "permissions"]
+    },
+    "ValidateServerPermissionsResponse": {
+      "type": "object",
+      "properties": {
+        "allowed": {
+          "type": "string"
+        }
+      },
+      "title": "ValidateServerPermissionsResponse",
+      "required": ["allowed"]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
