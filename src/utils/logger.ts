@@ -17,7 +17,7 @@ class Logger {
       return;
     }
 
-    const date = formatDate(new Date(), 'YYYY-MM-DD hh:mm:ss');
+    const date = formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss');
     const commonPrefix = `[${LOG_PREFIX}:${date}]`;
     const configPrefix = this.config.prefix;
     const lastPrefix = configPrefix
