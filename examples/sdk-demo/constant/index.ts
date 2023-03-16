@@ -183,7 +183,7 @@ export const sidebarList = [
     marking: PAGE_SIDEBAR_PERMISSIONS,
   },
   {
-    headline: 'Push notification',
+    headline: 'Push notifications',
     marking: PAGE_SIDEBAR_NOTION,
   },
 ];
