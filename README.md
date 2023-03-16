@@ -36,13 +36,11 @@ const oc = getClient();
 
 <br />
 
-# 💡 Example
+# 💡 Usage
 
-## The `OpencordClient` provides a set of methods for accessing the SDK's features.
+The OpencordClient provides a set of methods for accessing the SDK's features.
 
-<br />
-
-## [`async getCode()`](https://developers.opencord.xyz/sdk/client-methods)
+For example, you can use the [`getCode()`](https://developers.opencord.xyz/sdk/client-methods/#async-getcode) method to retrieve the authorization code.
 
 ```typescript
 const { code, message, data } = await oc.getCode();
@@ -53,6 +51,8 @@ if (code === 200) {
   console.log('❌ Get authorization code failed.', code, message);
 }
 ```
+
+<br />
 
 # 📚 Documentation
 
