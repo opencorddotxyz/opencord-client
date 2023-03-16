@@ -76,7 +76,7 @@ const SDKMobile = () => {
           lineHeight={vw(33)}
           color="#999999"
         >
-          /{presentExampleLabel?.headline ?? ''}
+          &nbsp;/&nbsp;{presentExampleLabel?.headline ?? ''}
         </Text>
       </Flex>
       <Spacer padding={`${vw(34)} ${vw(30)}`}>{pageContent}</Spacer>
@@ -93,7 +93,7 @@ const SDKMobile = () => {
         >
           <Flex
             height={vw(88)}
-            borderBottom=" 1px solid rgba(255, 255, 255, 0.05)"
+            borderBottom=" 1px solid rgba(255, 255, 255, 0.2)"
             align="center"
             onClick={() => {
               setShowMenu(false);
@@ -114,10 +114,28 @@ const SDKMobile = () => {
             >
               Examples
             </Text>
+            <Spacer />
+            <Text
+              fontWeight="500"
+              fontSize={vw(26)}
+              lineHeight={vw(33)}
+              color="#FFFFFF"
+              onClick={() => {
+                window.open(OPENCORD_DOCS_LINK, '_blank');
+              }}
+            >
+              Docs
+            </Text>
+            <Box width={vw(10)} />
           </Flex>
           <Box height={vw(24)} />
           <Spacer overflow="hidden">
-            <Flex flexDirection="column" height="100%" paddingX={vw(30)}>
+            <Flex
+              flexDirection="column"
+              height="100%"
+              paddingX={vw(30)}
+              marginTop={vw(24)}
+            >
               <Spacer>
                 {sidebarList.map((val) => {
                   return (
@@ -138,19 +156,6 @@ const SDKMobile = () => {
                   );
                 })}
               </Spacer>
-              <Box height={vw(217)} paddingTop={vw(32)}>
-                <Text
-                  fontWeight="600"
-                  fontSize={vw(36)}
-                  lineHeight={vw(45)}
-                  color="#FFFFFF"
-                  onClick={() => {
-                    window.open(OPENCORD_DOCS_LINK, '_blank');
-                  }}
-                >
-                  Developer Docs
-                </Text>
-              </Box>
             </Flex>
           </Spacer>
         </Flex>
