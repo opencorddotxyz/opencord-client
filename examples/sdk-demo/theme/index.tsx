@@ -9,6 +9,7 @@ const theme = extendTheme({
         width: '100vw',
         height: '100vh',
         webkitTapHighlightColor: 'transparent',
+        background: '#282828',
       },
     },
   },
