@@ -1,28 +1,22 @@
-<p>
-  <a href="https://www.opencord.xyz/">
+<p align="center">
+  <a href="https://www.opencord.xyz/" >
     <img width="200" src="https://www.opencord.xyz/imgs/opencord/opencord_blue.svg">
   </a>
 </p>
 
-<br />
+<p align="center">
+Official Opencord Plugin SDK for JavaScript
+</p>
+
+<div align="center">
 
 [![NPM version][image-version]][version]
 [![NPM downloads][image-downloads]][downloads]
 [![License][image-license]][license]
 
-<br />
+</div>
 
-# Introduction
-
-### The SDK is open-source and maintained by the Opencord community, offering rich documentation and sample code to help developers quickly get started and understand its core functionality. Using the SDK, developers can create various types of plugins.<br /><br />
-
-# 📚 Documentation
-
-Documentation can be found on the [opencord website](https://developers.opencord.xyz/).
-
-<br />
-
-# 📦 Install
+# 📦 Installation
 
 ```bash
 $ npm install --save @opencord/client
@@ -42,7 +36,7 @@ const oc = getClient();
 
 <br />
 
-# 💡 Usage
+# 💡 Example
 
 ## The `OpencordClient` provides a set of methods for accessing the SDK's features.
 
@@ -59,6 +53,10 @@ if (code === 200) {
   console.log('❌ Get authorization code failed.', code, message);
 }
 ```
+
+# 📚 Documentation
+
+See: [https://developers.opencord.xyz/](https://developers.opencord.xyz/)
 
 [version]: https://www.npmjs.com/package/@opencord/client
 [downloads]: https://npmjs.org/package/@opencord/client
