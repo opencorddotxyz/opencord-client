@@ -18,6 +18,15 @@ export const Notification = () => {
     }
     setLoading(true);
     try {
+      if (notificationTitle.length < 1) {
+        return toast({
+          position: 'top',
+          render: () => {
+            return <TextToast text="Title cannot be empty" />;
+          },
+        });
+      }
+
       const result = await pushNotification(
         notificationTitle,
         notificationContent
@@ -60,22 +69,29 @@ export const Notification = () => {
           onChange={(e) => {
             setNotificationTitle(e.target.value);
           }}
-          border="none"
           bg="#333333"
           borderRadius="4px"
           height="40px"
-          _focus={{
-            border: 'none',
-            outline: 'none',
-          }}
           outline="none"
           _active={{
             border: 'none',
             outline: 'none',
           }}
+          border="none"
+          _focus={{
+            boxShadow: 'none',
+            outlineColor: 'none',
+          }}
           padding="10px"
           color="#FFFFFF"
           marginTop="10px"
+          _placeholder={{
+            fontWeight: 400,
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: '#FFFFFF',
+            opacity: 0.3,
+          }}
         />
         <Text
           fontWeight="400"
@@ -92,17 +108,24 @@ export const Notification = () => {
             setNotificationContent(e.target.value);
           }}
           marginTop="10px"
-          border="none"
           bg="#333333"
           borderRadius="4px"
           height="40px"
+          border="none"
           _focus={{
-            border: 'none',
-            outline: 'none',
+            boxShadow: 'none',
+            outlineColor: 'none',
           }}
           _active={{
             border: 'none',
             outline: 'none',
+          }}
+          _placeholder={{
+            fontWeight: 400,
+            fontSize: '16px',
+            lineHeight: '20px',
+            color: '#FFFFFF',
+            opacity: 0.3,
           }}
           padding="10px"
           color="#FFFFFF"

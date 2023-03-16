@@ -82,25 +82,29 @@ export const PermissionMobile = () => {
         <Menu placement="bottom-end">
           <MenuButton pointerEvents="auto" width="100%">
             <Flex
-              height={vw(70)}
-              align="center"
               border="2px solid #3B3B3B"
               borderRadius={vw(8)}
               marginTop={vw(32)}
-              paddingX={vw(24)}
+              paddingX={vw(12)}
+              paddingY={vw(12)}
+              align="center"
             >
               <Spacer height="100%">
                 <Flex align="center" height="100%">
-                  {curSelectedPermissions.map((val) => {
-                    return (
-                      <SelectedItem
-                        key={val.value}
-                        permission={val.label}
-                        value={val.value}
-                        deletePermission={deletePermission}
-                      />
-                    );
-                  })}
+                  {curSelectedPermissions.length < 1 ? (
+                    <Text>Select</Text>
+                  ) : (
+                    curSelectedPermissions.map((val) => {
+                      return (
+                        <SelectedItem
+                          key={val.value}
+                          permission={val.label}
+                          value={val.value}
+                          deletePermission={deletePermission}
+                        />
+                      );
+                    })
+                  )}
                 </Flex>
               </Spacer>
 
@@ -254,7 +258,8 @@ const SelectedItem = (props: {
       fontWeight="400"
       fontSize={vw(24)}
       align="center"
-      padding={vw(6)}
+      paddingY={vw(6)}
+      paddingX={vw(12)}
       marginRight="6px"
     >
       <Text color="#ffffff">{permission}</Text>

@@ -1,5 +1,5 @@
 import { MobilePageContainer } from '@/components/common/pageContainer/mobile';
-import { Box, Center, Text, useToast } from '@chakra-ui/react';
+import { Box, Center, Text, useToast, Input } from '@chakra-ui/react';
 
 import { vw } from '@/utils';
 import { MobileButton } from '@/components/common/button';
@@ -22,6 +22,14 @@ export const NotificationMobile = () => {
     }
     setLoading(true);
     try {
+      if (notificationTitle.length < 1) {
+        return toast({
+          position: 'top',
+          render: () => {
+            return <TextToast text="Title cannot be empty" />;
+          },
+        });
+      }
       const result = await pushNotification(
         notificationTitle,
         notificationContent
@@ -73,20 +81,30 @@ export const NotificationMobile = () => {
         >
           Title
         </Text>
-        <input
+        <Input
           value={notificationTitle}
           style={{
             height: vw(72),
             borderRadius: vw(10),
-            background: '#111111',
             padding: vw(10),
             width: '100%',
             marginTop: vw(13),
             color: '#FFFFFF',
           }}
+          bg="#333333"
+          border="none"
+          _focus={{
+            boxShadow: 'none',
+            outlineColor: 'none',
+          }}
           placeholder="Enter here"
           onChange={(e) => {
             setNotificationTitle(e.target.value);
+          }}
+          _placeholder={{
+            fontWeight: 400,
+            color: '#FFFFFF',
+            opacity: 0.3,
           }}
         />
         <Text
@@ -98,7 +116,7 @@ export const NotificationMobile = () => {
         >
           Content
         </Text>
-        <input
+        <Input
           value={notificationContent}
           onChange={(e) => {
             setNotificationContent(e.target.value);
@@ -107,11 +125,21 @@ export const NotificationMobile = () => {
           style={{
             height: vw(72),
             borderRadius: vw(10),
-            background: '#111111',
             padding: vw(10),
             width: '100%',
             marginTop: vw(13),
             color: '#FFFFFF',
+          }}
+          bg="#333333"
+          _placeholder={{
+            fontWeight: 400,
+            color: '#FFFFFF',
+            opacity: 0.3,
+          }}
+          border="none"
+          _focus={{
+            boxShadow: 'none',
+            outlineColor: 'none',
           }}
         />
         <MobileButton
