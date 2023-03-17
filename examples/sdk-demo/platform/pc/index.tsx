@@ -13,6 +13,7 @@ import {
   PAGE_SIDEBAR_RUNTIME,
   sidebarList,
 } from '../../constant';
+import { useUserStore } from '@/store/userStore';
 const SDKPcPage = () => {
   return (
     <Box
@@ -66,7 +67,14 @@ const PageTitle = () => {
 
 const PageContent = () => {
   const [presentExample, setPresentExample] = useState(PAGE_SIDEBAR_RUNTIME);
+  const { userId } = useUserStore();
   const pageContent = useMemo(() => {
+    if (presentExample === PAGE_SIDEBAR_RUNTIME) {
+      return <RunTimeInformation />;
+    }
+    if (userId.length < 1) {
+      return <WalletAddress />;
+    }
     switch (presentExample) {
       case PAGE_SIDEBAR_RUNTIME:
         return <RunTimeInformation />;
@@ -81,7 +89,7 @@ const PageContent = () => {
       default:
         return <RunTimeInformation />;
     }
-  }, [presentExample]);
+  }, [presentExample, userId]);
   return (
     <Flex width="100%" height="100%" marginTop="36px">
       <Box>

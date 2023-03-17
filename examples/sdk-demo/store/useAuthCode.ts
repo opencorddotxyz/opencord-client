@@ -5,7 +5,7 @@ import { oc } from '../lib/opencord';
 interface IAuthCode {
   authCode: string;
   accessTime: number;
-  getCodeFormOC: () => Promise<void>;
+  getCodeFormOC: () => Promise<string | undefined>;
 }
 
 export const useAuthCode = create<IAuthCode>((set) => {
@@ -20,6 +20,7 @@ export const useAuthCode = create<IAuthCode>((set) => {
         draft.accessTime = new Date().getTime();
       });
     });
+    return data?.code ?? '';
   };
   return {
     authCode: '',
