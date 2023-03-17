@@ -29,6 +29,9 @@ const SDKMobile = () => {
     if (presentExample === PAGE_SIDEBAR_RUNTIME) {
       return <RunTimeMobile />;
     }
+    if (presentExample === PAGE_SIDEBAR_CODE) {
+      return <AuthCodeMobile />;
+    }
     if (userId.length < 1) {
       return <WalletAddressMobile />;
     }

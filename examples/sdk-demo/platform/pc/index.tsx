@@ -72,6 +72,9 @@ const PageContent = () => {
     if (presentExample === PAGE_SIDEBAR_RUNTIME) {
       return <RunTimeInformation />;
     }
+    if (presentExample === PAGE_SIDEBAR_CODE) {
+      return <AuthCode />;
+    }
     if (userId.length < 1) {
       return <WalletAddress />;
     }
