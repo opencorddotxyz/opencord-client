@@ -104,16 +104,20 @@ export const Permission = () => {
               >
                 <Spacer>
                   <Flex align="center">
-                    {curSelectedPermissions.map((val) => {
-                      return (
-                        <SelectedItem
-                          key={val.value}
-                          permission={val.label}
-                          value={val.value}
-                          deletePermission={deletePermission}
-                        />
-                      );
-                    })}
+                    {curSelectedPermissions.length < 1 ? (
+                      <Text>Select</Text>
+                    ) : (
+                      curSelectedPermissions.map((val) => {
+                        return (
+                          <SelectedItem
+                            key={val.value}
+                            permission={val.label}
+                            value={val.value}
+                            deletePermission={deletePermission}
+                          />
+                        );
+                      })
+                    )}
                   </Flex>
                 </Spacer>
 
