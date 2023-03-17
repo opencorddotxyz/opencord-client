@@ -92,6 +92,7 @@ export const Notification = () => {
             color: '#FFFFFF',
             opacity: 0.3,
           }}
+          placeholder="Enter here"
         />
         <Text
           fontWeight="400"
@@ -129,6 +130,7 @@ export const Notification = () => {
           }}
           padding="10px"
           color="#FFFFFF"
+          placeholder="Enter here"
         />
         <OButton
           text="Send"
