@@ -5,13 +5,17 @@ import { useCodeExpiration } from '../../common/useCodeExpiration';
 
 export const useAuthCodeLogin = () => {
   useCodeExpiration();
-  const { authCode: code } = useAuthCode();
+  const { authCode: code, getCodeFormOC } = useAuthCode();
 
   const { getLoginInfo } = useUserStore();
 
   const getAuthInfo = async () => {
-    const result = await pluginVerifyLoginCode({ code });
-    console.log('result', result);
+    let authCode: string | undefined = code;
+    if (authCode.length < 1) {
+      authCode = await getCodeFormOC();
+    }
+    const result = await pluginVerifyLoginCode({ code: authCode ?? '' });
+
     const {
       serverId = '',
       channelId = '',

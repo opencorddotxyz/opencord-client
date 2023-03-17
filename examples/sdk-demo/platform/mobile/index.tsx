@@ -15,6 +15,7 @@ import {
   OPENCORD_DOCS_LINK,
 } from '@/constant';
 import { useMemo, useState } from 'react';
+import { useUserStore } from '@/store/userStore';
 const SDKMobile = () => {
   const [presentExample, setPresentExample] = useState(PAGE_SIDEBAR_RUNTIME);
   const [showMenu, setShowMenu] = useState(false);
@@ -23,7 +24,14 @@ const SDKMobile = () => {
       return val.marking === presentExample;
     });
   }, [presentExample]);
+  const { userId } = useUserStore();
   const pageContent = useMemo(() => {
+    if (presentExample === PAGE_SIDEBAR_RUNTIME) {
+      return <RunTimeMobile />;
+    }
+    if (userId.length < 1) {
+      return <WalletAddressMobile />;
+    }
     switch (presentExample) {
       case PAGE_SIDEBAR_RUNTIME:
         return <RunTimeMobile />;
@@ -38,7 +46,7 @@ const SDKMobile = () => {
       default:
         return <RunTimeMobile />;
     }
-  }, [presentExample]);
+  }, [presentExample, userId]);
   return (
     <Box
       bg="#282828"
