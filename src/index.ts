@@ -11,3 +11,5 @@ export const getClient = (config?: Config) => {
 
   return oc;
 };
+
+export type OpencordClient = ReturnType<typeof getClient>;
