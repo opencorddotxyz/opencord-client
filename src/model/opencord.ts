@@ -11,6 +11,7 @@ export interface AuthInfo {
   code: string;
   address: string;
   userId: string;
+  channelId: string;
 }
 export interface AppInfo {
   version: string;
@@ -42,4 +43,3 @@ export class Opencord {
     return await invokeRPC<AuthInfo>(RPCMethods.getCode);
   }
 }
-
